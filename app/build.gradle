@@ -48,12 +48,7 @@ android {
 
 dependencies {
 
-    //ktx
-    implementation rootProject.ext.depends.core_ktx
-    implementation rootProject.ext.depends.lifecycle_runtime_ktx
-    implementation rootProject.ext.depends.lifecycle_livedata_core_ktx
-    implementation rootProject.ext.depends.lifecycle_livedata_ktx
-    implementation rootProject.ext.depends.lifecycle_viewmodel_ktx
+    implementation project(":base")
 
     //compose
     implementation rootProject.ext.depends.compose_activity
@@ -62,13 +57,11 @@ dependencies {
     implementation rootProject.ext.depends.compose_ui_tooling_preview
     implementation rootProject.ext.depends.compose_material
 
-
     //accompanist
     implementation rootProject.ext.depends.accompanist_pager
     implementation rootProject.ext.depends.accompanist_pager_indicators
     implementation rootProject.ext.depends.accompanist_swiperefresh
     implementation rootProject.ext.depends.accompanist_webview
-
 
     // 图片加载库
     implementation rootProject.ext.depends.compose_coil

@@ -21,3 +21,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Encomic"
 include ':app'
+include ':base'

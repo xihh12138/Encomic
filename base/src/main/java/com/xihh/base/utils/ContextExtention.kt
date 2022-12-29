@@ -1,8 +1,8 @@
-package com.xihh.encomic.utils
+package com.xihh.base.utils
 
 import android.widget.Toast
 import androidx.annotation.StringRes
-import com.xihh.encomic.appContext
+import com.xihh.base.android.appContext
 
 fun toast(string: String) {
     Toast.makeText(appContext, string, Toast.LENGTH_SHORT).show()

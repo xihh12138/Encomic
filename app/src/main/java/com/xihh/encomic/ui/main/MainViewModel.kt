@@ -1,7 +1,8 @@
 package com.xihh.encomic.ui.main
 
-import androidx.lifecycle.ViewModel
+import com.xihh.base.android.BaseViewModel
 
-class MainViewModel : ViewModel() {
+class MainViewModel : BaseViewModel() {
+
 
 }

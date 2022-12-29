@@ -14,6 +14,8 @@ buildscript {
 
                 "okhttp"                     : "4.9.0",
                 "retrofit"                   : "2.9.0",
+
+                "coroutines_android"         : "1.5.2",
         ]
 
         depends = [
@@ -22,6 +24,8 @@ buildscript {
                 "lifecycle_livedata_core_ktx" : "androidx.lifecycle:lifecycle-livedata-core-ktx:${versions.lifecycle_ktx}",
                 "lifecycle_livedata_ktx"      : "androidx.lifecycle:lifecycle-livedata-ktx:${versions.lifecycle_ktx}",
                 "lifecycle_viewmodel_ktx"     : "androidx.lifecycle:lifecycle-viewmodel-ktx:${versions.lifecycle_ktx}",
+
+                "coroutines_android"          : "org.jetbrains.kotlinx:kotlinx-coroutines-android:${versions.coroutines_android}",
 
                 "compose_activity"            : "androidx.activity:activity-compose:${versions.compose_activity}",
                 "compose_lifecycle_viewmodel" : "androidx.lifecycle:lifecycle-viewmodel-compose:${versions.compose_lifecycle_viewmodel}",

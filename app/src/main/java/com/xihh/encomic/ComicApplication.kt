@@ -1,12 +1,9 @@
 package com.xihh.encomic
 
-import android.app.Application
+import com.xihh.base.android.BaseApplication
 
-class ComicApplication : Application() {
+class ComicApplication : BaseApplication() {
     override fun onCreate() {
         super.onCreate()
-        appContext = this
     }
 }
-
-lateinit var appContext: Application
