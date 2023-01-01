@@ -42,8 +42,8 @@ private fun MainScreen(
     viewModel: MainViewModel
 ) {
     val pageState = rememberPagerState()
-    val scaffoldState = rememberScaffoldState()
     val scope = rememberCoroutineScope()
+    val scaffoldState = rememberScaffoldState()
 
     Scaffold(
         modifier = modifier,
@@ -56,7 +56,6 @@ private fun MainScreen(
                     Tab(
                         selected = pageState.currentPage == index,
                         onClick = { scope.launch { pageState.animateScrollToPage(index) } },
-                        modifier = Modifier.background(EncomicTheme.colors.surface)
                     ) {
                         Icon(
                             painter = painterResource(id = pair.second),
@@ -65,7 +64,6 @@ private fun MainScreen(
                         )
                         Text(
                             text = stringResource(id = pair.first),
-                            color = EncomicTheme.colors.onSurface
                         )
                     }
                 }

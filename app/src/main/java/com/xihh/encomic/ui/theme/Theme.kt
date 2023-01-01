@@ -10,6 +10,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 private val DarkColorPalette = darkColors(
     primary = Purple600,
@@ -31,22 +32,22 @@ private val LightColorPalette = lightColors(
     primaryVariant = Purple500,
     secondary = Teal300,
     secondaryVariant = Teal500,
-    background = Teal100,
+    background = Color.White,
     surface = Purple100,
     error = Red500,
     onPrimary = onPurple100,
     onSecondary = onTeal300,
-    onBackground = onTeal100,
+    onBackground = onTeal700,
     onSurface = onPurple100,
     onError = Color.White,
 )
 
-object EncomicTheme{
+object EncomicTheme {
 
     var theme by mutableStateOf(Theme.Normal)
 
-    fun changeTheme(theme: Theme?=null){
-        this.theme= theme
+    fun changeTheme(theme: Theme? = null) {
+        this.theme = theme
             ?: if (this.theme == Theme.Night) {
                 Theme.Normal
             } else {
@@ -70,6 +71,9 @@ fun EncomicTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composabl
     } else {
         LightColorPalette
     }
+
+    val systemUiController = rememberSystemUiController()
+    systemUiController.setStatusBarColor(Color.Transparent, !darkTheme)
 
     MaterialTheme(
         colors = colors,

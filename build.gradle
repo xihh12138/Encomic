@@ -37,6 +37,7 @@ buildscript {
                 "accompanist_pager_indicators": "com.google.accompanist:accompanist-pager-indicators:${versions.accompanist}",
                 "accompanist_swiperefresh"    : "com.google.accompanist:accompanist-swiperefresh:${versions.accompanist}",
                 "accompanist_webview"         : "com.google.accompanist:accompanist-webview:${versions.accompanist}",
+                "accompanist_systemuicontroller"         : "com.google.accompanist:accompanist-systemuicontroller:${versions.accompanist}",
 
                 "compose_coil"                : "io.coil-kt:coil-compose:${versions.compose_coil}",
 

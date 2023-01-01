@@ -31,3 +31,5 @@ val onPurple300 = Color.White
 val onPurple100 = Color.White
 val onTeal300 = Color(0xFFDDDDDD)
 val onTeal100 = Color.White
+
+val onWhite = Color.White

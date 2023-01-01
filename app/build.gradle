@@ -62,6 +62,7 @@ dependencies {
     implementation rootProject.ext.depends.accompanist_pager_indicators
     implementation rootProject.ext.depends.accompanist_swiperefresh
     implementation rootProject.ext.depends.accompanist_webview
+    implementation rootProject.ext.depends.accompanist_systemuicontroller
 
     // 图片加载库
     implementation rootProject.ext.depends.compose_coil

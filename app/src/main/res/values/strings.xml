@@ -4,4 +4,10 @@
     <string name="tab_find">发现</string>
     <string name="tab_bookshelf">书架</string>
     <string name="tab_other">其他</string>
+
+    <string name="tab_favorites">收藏</string>
+    <string name="tab_history">历史</string>
+    <string name="tab_download">下载</string>
+
+    <string name="menu_edit">编辑</string>
 </resources>
