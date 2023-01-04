@@ -38,5 +38,12 @@ dependencies {
     api rootProject.ext.depends.lifecycle_livedata_core_ktx
     api rootProject.ext.depends.lifecycle_livedata_ktx
     api rootProject.ext.depends.lifecycle_viewmodel_ktx
-    api rootProject.ext.depends.coroutines_android
+//    api rootProject.ext.depends.coroutines_android
+
+    // 网络相关
+    api rootProject.ext.depends.okhttp
+    api rootProject.ext.depends.retrofit
+
+    //分页
+    api rootProject.ext.depends.paging
 }

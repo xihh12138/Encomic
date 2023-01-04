@@ -2,6 +2,8 @@ package com.xihh.encomic.ui.main
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
 import androidx.compose.runtime.*
@@ -14,6 +16,7 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.rememberPagerState
 import com.xihh.encomic.R
+import com.xihh.encomic.ui.main.bookshelf.BookShelfRoute
 import com.xihh.encomic.ui.theme.EncomicTheme
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -51,11 +54,13 @@ private fun MainScreen(
         bottomBar = {
             TabRow(
                 selectedTabIndex = pageState.currentPage,
+                backgroundColor = EncomicTheme.colors.primary,
             ) {
                 tabItems.forEachIndexed { index, pair ->
                     Tab(
                         selected = pageState.currentPage == index,
                         onClick = { scope.launch { pageState.animateScrollToPage(index) } },
+                        modifier = Modifier.navigationBarsPadding()
                     ) {
                         Icon(
                             painter = painterResource(id = pair.second),

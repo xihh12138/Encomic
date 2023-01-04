@@ -74,6 +74,7 @@ fun EncomicTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composabl
 
     val systemUiController = rememberSystemUiController()
     systemUiController.setStatusBarColor(Color.Transparent, !darkTheme)
+    systemUiController.setNavigationBarColor(Color.Transparent)
 
     MaterialTheme(
         colors = colors,

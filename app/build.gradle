@@ -65,11 +65,9 @@ dependencies {
     implementation rootProject.ext.depends.accompanist_systemuicontroller
 
     // 图片加载库
-    implementation rootProject.ext.depends.compose_coil
+    implementation rootProject.ext.depends.coil_compose
 
-    // 网络相关
-    implementation rootProject.ext.depends.okhttp
-    implementation rootProject.ext.depends.retrofit
+    implementation rootProject.ext.depends.paging_compose
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
