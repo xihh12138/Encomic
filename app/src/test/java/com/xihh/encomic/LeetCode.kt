@@ -165,47 +165,137 @@ class LeetCode {
     }
 
     class Solution56 {
+
+        /**
+         * 排序大法
+         * 1.根据区间左边界从小到大排序，我们就只用得到的结果的右区间进行判断了，
+         * 1.1如果某个待比较的区间的左边界大于当前区间的右边界，那说明两个区间没有重合，直接加到结果的最后面，
+         *    同时因为我们根据区间左边界进行了排序，能保证后面所有的区间的左边界都不会小于新加进来的区间的左边界，
+         *    所以把新加的区间当作比较基准继续和后面的区间比较就行了
+         * 1.2如果某个待比较的区间的左边界小于等于当前区间的右边界，那说明两个区间有重合，这时候只需要修改当前区间的右边界为两个区间的最大值就行了
+         *   （这就是排序的好处）
+         **/
         fun merge(intervals: Array<IntArray>): Array<IntArray> {
             intervals.sortBy { it[0] }
             val ans = mutableListOf<IntArray>()
-            for (i in intervals.indices) {
-                val interval = intervals[i]
 
-                var hasMerged = false
-                for (j in ans.indices) {
-                    if (ans[j].hasIntersection(interval)) {
-                        ans[j].merge(interval)
-                        hasMerged = true
-                    }
-                }
-
-                if (!hasMerged) {
+            var curArray: IntArray? = null
+            for (interval in intervals) {
+                if (curArray == null || curArray[1] < interval[0]) {
                     ans.add(interval)
+                    curArray = interval
+                } else {
+                    curArray[1] = Math.max(interval[1], curArray[1])
                 }
-
             }
+
             return ans.toTypedArray()
         }
+    }
 
-        private fun IntArray.hasIntersection(other: IntArray): Boolean {
-            val smaller: IntArray
-            val bigger: IntArray
-            if (get(0) < other[0]) {
-                smaller = this
-                bigger = other
-            } else {
-                smaller = other
-                bigger = this
+    class Solution119 {
+
+        /**
+         * 滚动数组
+         * 从上到下遍历到需要获取的杨辉三角行，因为只需要上一行就能得到下一行的结果，所以可以滚动向下直到算出最后一行
+         * 进阶：只使用一个数组的空间，倒叙遍历的话，能保证计算下一个数所需的其他数还是上一个
+         **/
+        fun getRow(rowIndex: Int): List<Int> {
+            val result = ArrayList<Int>(rowIndex + 1)
+
+            for (i in 0..rowIndex) {
+                result.add(0)
+                for (j in i downTo 0) {
+                    if (j == 0 || j == i) {
+                        result[j] = 1
+                    } else {
+                        result[j] = result[j - 1] + result[j]
+                    }
+                }
             }
 
-            return smaller[1] >= bigger[0]
+            return result
         }
+    }
 
-        private fun IntArray.merge(other: IntArray) {
-            if (hasIntersection(other)) {
-                set(0, Math.min(get(0), other[0]))
-                set(1, Math.max(get(1), other[1]))
+
+    class Solution48 {
+
+        /**
+         *[[0,0],[1,0],[2,0],[3,0]]
+         *[[0,1],[1,1],[2,1],[3,1]]
+         *[[0,2],[1,2],[2,2],[3,2]]
+         *[[0,3],[1,3],[2,3],[3,3]]
+         */
+        /**
+         *[[0,3],[0,2],[0,1],[0,0]]
+         *[[1,3],[1,2],[1,1],[1,0]]
+         *[[2,3],[2,2],[2,1],[2,0]]
+         *[[3,3],[3,2],[3,1],[3,0]]
+         */
+        /**
+         * 找规律，没啥好说的，但是要注意坐标系，注释里用的是Android坐标系，但是题目是正常的数学坐标系，所以仅供参考
+         */
+        fun rotate1(matrix: Array<IntArray>) {
+            val size = matrix.size
+            val rotateMatrix = Array(size) { IntArray(size) }
+            for (x in 0 until size) {
+                for (y in 0 until size) {
+                    rotateMatrix[x][y] = matrix[size - 1 - y][x]
+                }
+            }
+            for (x in 0 until size) {
+                for (y in 0 until size) {
+                    matrix[x][y] = rotateMatrix[x][y]
+                }
             }
         }
+
+        /**
+         * 由于是旋转1/4个圆(90/360°)，所以如果要进行原地旋转的话，那我们只用4项循环加一个临时变量就可以完成四个坐标的旋转
+         * （因为正方形里只要旋转4次90°就能转回原样）
+         * 剩下的就是如何判断需要开始旋转的起始坐标了，我们把正方形平均分为四份，取其中任何一份里面的坐标作为旋转起始坐标，
+         * 再加上四次旋转就能原地旋转正方形了
+         * 如果边长为偶数，那就是(size/2)*(size/2)
+         * 如果边长为奇数，因为中间那一块不会旋转，所以就是把除了中间以外的其他块平分，我是分成了(n^2-1)/4 = ((size-1)/2)*((size+1)/2)
+         */
+        fun rotate2(matrix: Array<IntArray>) {
+            val size = matrix.size
+            for (x in 0 until size / 2) {
+                for (y in 0 until (size + 1) / 2) {
+                    val temp = matrix[x][y]
+                    matrix[x][y] = matrix[size - 1 - y][x]
+                    matrix[size - 1 - y][x] = matrix[size - 1 - x][size - 1 - y]
+                    matrix[size - 1 - x][size - 1 - y] = matrix[y][size - 1 - x]
+                    matrix[y][size - 1 - x] = temp
+                }
+            }
+        }
+
+        /**
+         * 翻转代替旋转
+         * 观察矩阵就能发现，只要先镜像翻转再对角线翻转就能达到顺时针旋转90°的效果
+         */
+        fun rotate3(matrix: Array<IntArray>) {
+            val size = matrix.size
+            for (x in 0 until size / 2) {
+                for (y in 0 until size) {
+                    val temp = matrix[x][y]
+                    matrix[x][y] = matrix[size - 1 - x][y]
+                    matrix[size - 1 - x][y] = temp
+                }
+            }
+
+            for (x in 0 until size) {
+                for (y in 0 until x) {
+                    val temp = matrix[x][y]
+                    matrix[x][y] = matrix[y][x]
+                    matrix[y][x] = temp
+                }
+            }
+
+        }
+
+
     }
 }
