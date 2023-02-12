@@ -10,4 +10,8 @@
     <string name="tab_download">下载</string>
 
     <string name="menu_edit">编辑</string>
+
+    <string name="function_search">搜索</string>
+
+    <string name="hint_main_search">请输入关键词(作者/漫画名)</string>
 </resources>

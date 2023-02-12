@@ -55,12 +55,15 @@ private fun MainScreen(
             TabRow(
                 selectedTabIndex = pageState.currentPage,
                 backgroundColor = EncomicTheme.colors.primary,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(EncomicTheme.colors.primary)
+                    .navigationBarsPadding()
             ) {
                 tabItems.forEachIndexed { index, pair ->
                     Tab(
                         selected = pageState.currentPage == index,
                         onClick = { scope.launch { pageState.animateScrollToPage(index) } },
-                        modifier = Modifier.navigationBarsPadding()
                     ) {
                         Icon(
                             painter = painterResource(id = pair.second),
